@@ -2,8 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const CONFIG = require('./config')
 const dbConnect = require('./db/mongodb')
-const bookRouter = require('./routes/books')
-
+const bookRouter = require('./routes/books.routes')
+const authorRouter = require('./routes/authors.routes') 
 
 const app = express()
 
@@ -13,6 +13,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.use('/api/v1/books', bookRouter)
+app.use('/api/v1/authors', authorRouter)
 
 app.get('/', (req, res)=> {
     res.send('Bookstore live')
